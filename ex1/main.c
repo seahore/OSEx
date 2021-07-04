@@ -33,13 +33,15 @@ int main() {
     int cnt;
     printf("Enter the number of process: ");
     scanf("%d", &cnt);
-    for (int i = 0; i < cnt; ++i) {
-        printf("Process %d (<PID> <Time> <Prior>): ", i);
-        Word pid;
-        DWord time;
-        unsigned int prior;
-        scanf("%hu%lu%hhu", &pid, &time, &prior);
-        PCBEnque(CreatePCB(pid, time, prior));
+    if(cnt > 0) {
+        for (int i = 0; i < cnt; ++i) {
+            printf("Process %d (<PID> <Time> <Prior>): ", i);
+            Word pid;
+            DWord time;
+            unsigned int prior;
+            scanf("%hu%lu%hhu", &pid, &time, &prior);
+            PCBEnque(CreatePCB(pid, time, prior));
+        }
     }
     Run();
     puts("Evaluation has been terminated.");
