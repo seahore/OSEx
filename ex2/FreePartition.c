@@ -12,6 +12,9 @@ void* Allocate(size_t length) {
         if (next->Length >= length) {
             void *ret = next->StartingAddress;
             if (next->Length == length) {
+                for (FreePartition *i = next->Next; i; i = i->Next) {
+                    --i->Number;
+                }
                 if (!prev) {
                     FreePartition *t = freePartitions;
                     freePartitions = freePartitions->Next;
@@ -19,9 +22,6 @@ void* Allocate(size_t length) {
                 } else {
                     prev->Next = next->Next;
                     free(next);
-                }
-                for (FreePartition *i = next; i; i = i->Next) {
-                    --i->Number;
                 }
             } else {
                 next->StartingAddress += length;
