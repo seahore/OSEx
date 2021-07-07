@@ -21,21 +21,24 @@ typedef struct Node {
 Node **proc;
 
 int main() {
+    puts("Requests:\nAllocate:     0 <PID> <block_count>\nFree:         1 <PID>\nPrint bitmap: 2\nTerminate:    3\n");
     memset(bitmap, 0, 8);
 
     printf("Number of processes: ");
     size_t numProc;
-    scanf("%u", &numProc);
+    scanf("%zu", &numProc);
     proc = malloc(numProc * sizeof(void*));
     memset(proc, 0, numProc * sizeof(void*));
 
     while(1) {
+        putchar('>');
+        putchar(' ');
         int cmd;
         scanf("%d", &cmd);
         switch (cmd) {
             case 0: {
                 size_t p, cnt;
-                scanf("%u%u", &p, &cnt);
+                scanf("%zu%zu", &p, &cnt);
                 if (p < numProc && cnt >= 1 && !proc[p]) {
                     proc[p] = malloc(sizeof(Node));
                     proc[p]->val = Allocate();
@@ -51,7 +54,7 @@ int main() {
             }
             case 1: {
                 size_t p;
-                scanf("%u", &p);
+                scanf("%zu", &p);
                 if (p < numProc) {
                     Node *iter = proc[p];
                     while (iter) {
