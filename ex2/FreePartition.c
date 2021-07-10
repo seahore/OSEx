@@ -33,7 +33,7 @@ void* Allocate(size_t length) {
 }
 
 void Free(void* addr, size_t size) {
-    if(addr < (void*)0x1000) {
+    if(addr < (void*)PRESERVED_SIZE) {
         return;
     }
     if(addr+size < freePartitions->StartingAddress) {

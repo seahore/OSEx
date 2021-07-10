@@ -6,8 +6,8 @@
 #define _DEFS_H
 
 #define NULL ((void*)0)
-#define MEMORY_SIZE (0x400000);
-#define PRESERVED_SIZE (0x1000);
+#define MEMORY_SIZE (0x400000)
+#define PRESERVED_SIZE (0x1000)
 
 typedef unsigned short Word;
 typedef unsigned long DWord;
